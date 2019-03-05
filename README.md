@@ -2,7 +2,7 @@
 ## About 
 In this repository you will find my solution to the Memory Game project from Udacity's Front End Nanodegree. This project explores basic concepts regarding Javascript.
 
-##Features
+## Features
 - A game timer
 - Stars rating (3 stars = 8 moves, 2 stars < 17 moves)
 
