@@ -111,3 +111,37 @@ h1 {
 .score-panel .gameTime {
     margin-left: 10px;
 }
+
+/*
+ * Winning panel
+ */
+
+.winPanel {
+    width: 660px;
+    min-height: 300px;
+    background-color: #acdeaa;
+	margin-top: auto;
+	margin-bottom: auto;
+    padding: 32px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+}
+.winPanel button {
+	background-color: #5893d4; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+    margin-left: 20px;
+	display: inline-block;
+	font-size: 16px;
+}
+
+.winPanel button:hover {
+    cursor: pointer;
+}

@@ -15,16 +15,14 @@ let totalTime =0;
 let seconds =0;
 let minutes =0;
 let gameTimer = setInterval(function() {
-
-
-  minutes = parseInt(totalTime/60);
-  seconds = totalTime % 60;
-  if(seconds < 10) {
-	 document.querySelector('.gameTime').innerText= `Time - ${minutes} : 0${seconds}`;
-  }else{
-	    document.querySelector('.gameTime').innerText= `Time - ${minutes} : ${seconds}`;
-  }
-  totalTime++;
+	minutes = parseInt(totalTime/60);
+	seconds = totalTime % 60;
+	if(seconds < 10) {
+		document.querySelector('.gameTime').innerText= `Time - ${minutes} : 0${seconds}`;
+	}else{
+	   document.querySelector('.gameTime').innerText= `Time - ${minutes} : ${seconds}`;
+	}
+	totalTime++;
 }, 1000);
 
 
@@ -73,7 +71,7 @@ function shuffle(array) {
     return array;
 }
 
-
+// A function for reducing stars
 function reduceStars(){
 	if(stars == 3){
 		starElements[2].innerHTML = '<i class="fa fa-star-o"></i>';
@@ -84,24 +82,54 @@ function reduceStars(){
 	}
 }
 
+// A function for stopping the timer and showing the win panel
 function winGame() {
+    // Stop the timer
 	clearInterval(gameTimer);
-	totalTime =0;
-    seconds =0;
-    minutes =0;
+	const deck = document.querySelector('.deck');
+    deck.innerHTML = "";
+    const winPanel =  document.createElement('div');
+    winPanel.classList.add("winPanel");
+    const winHeader =  document.createElement('h1');
+    winHeader.innerText = "You won! woohoo!";
+	winHeader.style.marginLeft = "15%";
+    winHeader.style.fontWeight = "bolder";
+    winHeader.style.textAlign = "center";
+	winHeader.style.color = "#eef2f5";
+    winPanel.appendChild(winHeader);
+	const playAgain =  document.createElement('button');
+    playAgain.addEventListener('click', function(e){
+		location.reload();
+	});
+    playAgain.innerText = "Play Again";
+	playAgain.style.marginLeft = "auto";	
+	playAgain.style.marginRight = "auto";
+    winPanel.appendChild(playAgain);
+    const winStats =  document.createElement('h2');
+    winStats.innerHTML = `You finished in ${minutes}:${seconds} and with ${stars}<i class="fa fa-star-o"></i>`;
+    winStats.style.fontWeight = "bolder";
+    winStats.style.textAlign = "center";
+	winStats.style.marginLeft = "20%";
+	winStats.style.color = "#eef2f5";
+    winPanel.appendChild(winStats);
+	deck.appendChild(winPanel);
 }	
 
-// Game init function
+/* Game init function */
 function startGame(){
+    // Shuffle and display cards
 	displayCards(allCards);
 	const cards = document.querySelectorAll('.card');
-	document.querySelector('.moves').innerText = moves;
+    // Iterate through all the cards and add the game rules to them
 	for(const card of cards) {
 		card.addEventListener('click', function(e){
 			if(!card.classList.contains('open', 'show')) {
 				if(openedCards.length < 2){
+                    // Show card content
 					openedCards.push(card);
-					card.classList.add('open', 'show');	
+					card.classList.add('open', 'show');
+                    // If two cards have been picked 
+                    // We need  to check if they are identical
 					if(openedCards.length == 2){
                         moves++;
 						document.querySelector('.moves').innerText = moves;
@@ -118,8 +146,10 @@ function startGame(){
                             pairsLeft--;
 							firstCard.classList.add('match');	
 							secondCard.classList.add('match');
+                            // Check if the game is over
 							if(pairsLeft == 0){ winGame(); }
 						}else{
+                            // Flip the cards
                             setTimeout(function(){ 
 								firstCard.classList.remove('open','show');	
 								secondCard.classList.remove('open', 'show');
@@ -134,5 +164,6 @@ function startGame(){
 	};
 }
 
+/* Game init */
 
 startGame();
