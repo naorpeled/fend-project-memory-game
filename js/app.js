@@ -1,11 +1,12 @@
-const allCards = ['fa-diamond', 'fa-diamond',
-                  'fa-paper-plane-o', 'fa-paper-plane-o',
-                  'fa-anchor', 'fa-anchor',
-                  'fa-bolt', 'fa-bolt',
-                  'fa-bomb', 'fa-bomb',
-                  'fa-cube', 'fa-cube',
-                  'fa-leaf', 'fa-leaf',
-                  'fa-bicycle', 'fa-bicycle'];
+const halfCards = ['fa-diamond',
+                  'fa-paper-plane-o',
+                  'fa-anchor',
+                  'fa-bolt',
+                  'fa-bomb',
+                  'fa-cube',
+                  'fa-leaf',
+                  'fa-bicycle'];
+const allCards = halfCards.concat(halfCards);
 let openedCards = [];
 let starElements = [];
 let stars = 3;
@@ -58,7 +59,7 @@ function displayCards(cardArray){
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);

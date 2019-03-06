@@ -9,3 +9,8 @@ In this repository you will find my solution to the Memory Game project from Uda
 ## Instructions
 Pick two cards each time, if the item on them is identical they stay opened.
 Once you've revealed all the pairs you win the game :)
+
+## Dependencies
+- Bootstrap (for more info head to ```https://getbootstrap.com/```)
+- Font Awesome (for more info head to ```https://fontawesome.com/```)
+- Google fonts (for more info head to ```https://fonts.google.com/```)
